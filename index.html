@@ -375,8 +375,10 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>        
         <!--script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>        
         <script src="//cdnjs.cloudflare.com/ajax/libs/ember.js/1.7.0/ember.min.js"></script-->
+        <script src="js/vendor/json2.js"></script>
         <script src="js/vendor/select2.min.js"></script>
         <script src="js/vendor/jquery.cookie.js"></script>
+        <script src="js/vendor/jquery.storageapi.min.js"></script>        
         <script src="js/vendor/notify.min.js"></script>
         <script src="js/main.js"></script>
         <script>
@@ -546,7 +548,7 @@
             $('#submitBtn').on('click', function(e){
                     e.preventDefault();
                     syncFormWithData();
-                    saveDataToCookie();  
+                    saveDataToStorage();  
                     $('#checkData').click(); // refactor later    
                     var d=_global.data();
                     $('#machineFormContent').html(JSON.stringify(d, null, '\t'));
@@ -637,13 +639,13 @@
             /* save progress */
             $('#saveProgress').on('click', function(){
                 syncFormWithData();
-                saveDataToCookie();
+                saveDataToStorage();
             });
 
             /* reset progress */
             $('#resetProgress').on('click', function(){
                 if(confirm('Are you sure you ant to reset the entire page?')){
-                    $.removeCookie('data');
+                    $.localStorage.remove('data');
                     location.reload();
                 } else{}            
             });
@@ -742,12 +744,12 @@
                     var sharedOBJ=JSON.parse(decodeURIComponent(getQueryVariable('formdata')));
                     if(sharedOBJ){
                         _global.setData(sharedOBJ);
-                        saveDataToCookie();
+                        saveDataToStorage();
                         window.location=location.protocol+'//'+location.host+location.pathname;
                     }
                 }else {
                     /* load data from cookie if available */                
-                    loadDataFromCookie();
+                    loadDataFromStorage();
                 }
 
               })
@@ -803,9 +805,9 @@
             });
         }
         
-        function saveDataToCookie(){
+        function saveDataToStorage(){
             //syncFormWithData();
-            $.cookie('data', JSON.stringify(_global.data()),{ expires: 180 });  
+            $.localStorage.set('data', _global.data());  
             $.notify('Saved.', 'success', {position:'bottom right'});
         }
 
@@ -847,15 +849,15 @@
              }
         }
         
-        function loadDataFromCookie(){
-            var raw=$.cookie('data');
+        function loadDataFromStorage(){
+            var raw=$.localStorage.get('data');
             if(typeof raw =='undefined'){
                 /* if no cookie is present, add one criterion as an example */
                 $('.addWithinGroup').click();
                 return;
             }
-            var d=JSON.parse(raw);            
-            loadData(d);
+            //var d=JSON.parse(raw);            
+            loadData(raw);
         }
                 </script>
     </body>
