@@ -805,7 +805,7 @@
         
         function saveDataToCookie(){
             //syncFormWithData();
-            $.cookie('data', JSON.stringify(_global.data()),180);  
+            $.cookie('data', JSON.stringify(_global.data()),{ expires: 180 });  
             $.notify('Saved.', 'success', {position:'bottom right'});
         }
 
