@@ -1,1 +1,849 @@
-Hello World
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootswatch/3.2.0/united/bootstrap.min.css">
+        <link rel="stylesheet" href="css/select2.css">
+        
+        <style>
+            body {
+                padding-top: 0px; 
+                padding-bottom: 40px;
+            }
+            .footer {
+                background-color: #f5f5f5;
+                border-top: 0px;
+                height:40px;
+             }
+            .footer p{
+                padding: 10px 0px 0px 0px;
+            }
+            h2 {
+                padding-top: 20px;
+            }
+            .select2-container{
+                width:100%;
+                padding-bottom:10px;
+            }
+            .inclusionVars .panel .panel-body{
+                height:310px;
+            }
+            .bigdrop.select2-container .select2-results {max-height: 500px;}
+            .bigdrop .select2-results {max-height: 500px;}
+            p.lead{
+                padding-top:15px;
+                padding-bottom:5px;
+            }
+            section{
+                margin-bottom: 20px;
+            }
+        </style>
+        <!--link rel="stylesheet" href="css/bootstrap-theme.min.css"-->
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->        
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <!--[if lt IE 11]>
+          <H1> SOME FUNCTIONS DO NOT WORK WITH MOST VERSIONS OF INTERNET EXPLOER DUE TO LACK OF HTML5 SUPPORT.  Use Chrome, Firefox or Safari instead.</H1>
+        <![endif]-->        
+
+     <div class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="#" class="navbar-brand">Request form helper</a>
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="#Inclusion">Sample definition</a>
+            </li>
+            <li>
+              <a href="#Columns">Comparison groups</a>
+            </li>
+            <li>
+              <a href="#Rows">Variables</a>
+            </li>
+            <li>
+              <a href="#done">Submit</a>
+            </li>            
+            <li>
+              <a href="#links">Useful resources</a>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="http://www.sts.org" target="_blank">STS <span class="glyphicon glyphicon-share"></span></a></li>            
+          </ul>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <!--div class="jumbotron">
+      <div class="container">
+        <h1></h1>
+        <p></p>
+        <p>
+        <a class="btn btn-success btn-lg" role="button">Save progress &raquo;</a>
+        <a class="btn btn-danger btn-lg" role="button">Start over</a>
+        </p>
+      </div>
+    </div-->
+
+    
+    <div class="container">
+      <!-- Example row of columns -->
+      <div class="row">
+        <div class="col-md-12">
+        <section id='Inclusion'>        
+            <div class='page-header'>
+                <h1> Sample definition <small>which operations to include </small> </h1>
+            </div>
+            <h2> Start with a standard population <small><a href='http://www.sts.org/sites/default/files/documents/ProcIDAll_20121029_1.pdf' target='_blank'>link to definitions <span class="glyphicon glyphicon-share"></span></a></small></h2>                 
+            <p>Leave the selection blank if you want to use a non-standard population</p>
+            <div class='row'>
+                <div class='col-md-6'>
+                    <div id='standardPop' class='select2-container'></div>
+                </div>
+            </div>
+            
+            <h2> Specify additional criteria <small>must be from <a href='http://www.sts.org/sts-national-database/database-managers/adult-cardiac-surgery-database/data-collection' target='_blank'>data collection forms <span class="glyphicon glyphicon-share"></span></a></small></h2>       
+            <div id='allInclusionGroups'>
+                <h3> Sample 1 </h3>
+                <p> Within group, conditions are joined by 'AND'.  For example, <i>status</i> is elective AND <i>dialysis</i> is yes. </p>                
+                <div id='inclusionGP0' class="inclusionGroups" data-group-no='0'>
+                    <div class='row inclusionVars'>
+                        <!--div class="col-md-4">
+                            <div class="panel panel-default" data-criterion-no='1'>                    
+                            <div class="panel-heading"> Criterion 1</div>
+                            <div class="panel-body">
+                                <div class="inclusionVar1 mainSelection select2-container"></div>
+                                <h5>Values for discrete variables:</h5>
+                                <div class="inclusionVarVal1 subSelection select2-container">N/A</div>
+                                <h5>Ranges for continuous variables:<h5>
+                                <form class="form" role="form">
+                                  <div class="form-group ">
+                                    <label>Minimum value: </label>
+                                    <input type="number" class="form-control input-sm inclusionVarValMin inclusionVarValMin1" placeholder="min" disabled>
+                                  </div>
+                                  <div class="form-group ">                          
+                                    <label>Maximum value: </label>
+                                    <input type="number" class="form-control input-sm inclusionVarValMax inclusionVarValMax1" placeholder="max" disabled>
+                                  </div>
+                                </form> 
+                            </div>                        
+                            <div class="panel-footer">
+                                <a class="btn btn-default btn-sm clear-panel" href="#">clear</a>
+                                <a class="btn btn-danger btn-sm remove-panel" href="#">remove</a>
+                            </div>
+                            </div>                    
+                        </div>
+                        
+        
+                /* initialize first criterion */
+                $("#inclusionGP0 .inclusionVar1").select2({
+                    data: $.map(allvars, function(e){return({id:e.ShortName, text:e.LongName})}),                    
+                    matcher: fuzzyMatch,
+                    allowClear: true,
+                    placeholder: "Choose a variable"
+                    /* on change, modify other fields */
+                }).on('change', function(e, feededValue){
+                    /* clean set values for categories and numeric ranbes */
+                    $('#inclusionGP0 .inclusionVarValMin'+1).val('');
+                    $('#inclusionGP0 .inclusionVarValMax'+1).val('');
+                    $("#inclusionGP0 .inclusionVarVal"+1).val('');
+                    var val = feededValue ? feededValue:e.val                    
+                    var i = $.map(allvars, function(e){return(e.ShortName)}).indexOf(val);                    
+                    if(i && allvars[i]){
+                        if(allvars[i].Choices){
+                            $("#inclusionGP0 .inclusionVarVal"+1).select2({
+                                data: $.map(allvars[i].Choices, function(e){return({text:e.Description, id:e.HarvestCode})}),
+                                multiple:true,
+                                placeholder: "Choose one or multiple"
+                            });
+                            /* disable input for numeric ranges*/
+                            $('#inclusionGP0 .inclusionVarValMin'+1).prop("disabled",true);
+                            $('#inclusionGP0 .inclusionVarValMax'+1).prop("disabled",true);
+                        } else {
+                            /* enable numeric ranges */
+                            $('#inclusionGP0 .inclusionVarValMin'+1).prop("disabled",false);
+                            $('#inclusionGP0 .inclusionVarValMax'+1).prop("disabled",false);
+                            /* disable selection ranges*/
+                            $('#inclusionGP0 .inclusionVarVal'+1).select2("destroy");                          
+                        }
+                    } else{
+                    /* disable both categories and numeric values */                    
+                            $('#inclusionGP0 .inclusionVarValMin'+1).prop("disabled",true);
+                            $('#inclusionGP0 .inclusionVarValMax'+1).prop("disabled",true);                            
+                            $('#inclusionGP0 .inclusionVarVal'+1).select2("destroy");   
+                    }
+                }); 
+                /* end of initializing first criterion */
+                                        
+                        
+                        
+                        -->
+                        
+                        <div class='col-md-4 addWithinGroupContainer'>
+                            <h4> </h4>
+                            <a href="#" class="btn btn-default btn-block addWithinGroup" data-group-no='0'><span class="glyphicon glyphicon-plus"></span> Add criterion</a>    
+                        </div>
+                    </div>
+                </div> 
+            <hr/>
+            </div> <!-- all inclusion groups -->
+
+            <a href="#" class="btn btn-default btn-block" id='addInclusionGroup'><span class="glyphicon glyphicon-plus"></span> Add group, groups are joined by 'OR'</a>    
+            <hr />
+            <form class="" role="form">                                
+                <div class="form-group">
+                    <label for="inclusionFreeText">Add additional comments and notes</label>                    
+                    <textarea id="inclusionFreeText" class="form-control" rows="3"></textarea>
+                </div>
+            </form>
+            
+            
+            <h2> Date and version ranges </h2>
+            <p>Keep in mind that requests across versions are trickier and likely will require additional inputs </p>
+            <ul>
+                <li> 2.73: July 2011 - </li>
+                <li> 2.61: XXX - June 2011 </li>
+            </ul>            
+            <form class="form-horizontal" role="form">
+              <div class="form-group">
+                <label for="dateFrom" class="col-md-1 control-label">From</label>
+                <div class="col-md-5">
+                  <input type="date" class="form-control" id="dateFrom" placeholder="">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="dateUntil" class="col-md-1 control-label">To</label>
+                <div class="col-md-5">
+                  <input type="date" class="form-control" id="dateUntil" placeholder="">
+                </div>
+              </div>
+            </form>     
+
+        </section>
+        
+        
+        <section id="Columns">
+            <div class='page-header'>
+                <h1> Comparison groups (columns) </h1>
+            </div>
+            <p>Besides getting the distributions of the variables in the overall group, you might also be interested in comparing across a few subgroups, usually 2 or 3.  Use this section to specify these groups.</p>
+                <p class='lead'>First pick a few variables</p>
+                <div id="colVars" class="select2-container"></div>                
+                                
+                <p class='lead'>Tell us how the groups should be defined</small></p>
+                <form class="" role="form">
+                    <div class="form-group">                                     
+                        <textarea id="colFreeText" class="form-control" rows="3" placeholder="Analyse each group variable separately; analyse groups variable together and consider all possible combinations etc..  Need p-values?"></textarea>
+                    </div>
+                </form>                
+                
+
+        </section>        
+        <section id="Rows">
+            <div class='page-header'>
+                <h1> Variables of interests (rows) </h1>
+            </div>
+            <p class='lead'>If you are interested in only a few variables <small>pick them below</small></p>
+            <div id="rowVars" class="select2-container"></div>
+                            
+            <p class='lead'>If you are interested in lots of variables <small>describe them below</small></p>
+            <form class="" role="form">
+                <div class="form-group">
+                    <label for="rowFreeText">Try to refer to the data collection forms if possible</label>                    
+                    <textarea id="rowFreeText" class="form-control" rows="3" placeholder="Whole CABG section, all variables related to mitral valve types, etc"></textarea>
+                </div>
+            </form>
+        </section>        
+        </div>      
+      </div>
+      <hr>
+      <section id='done'>
+            <div class='page-header'>
+                <h1>Submit </h1>
+            </div>
+            <a href="#" id='submitBtn' class="btn btn-lg btn-success btn-block"><span class="glyphicon glyphicon-ok"></span> I'm done with the form</a>    
+      </section>
+      
+      <section id='links'>
+            <div class='page-header'>
+                <h1>Resources </h1>
+            </div>      
+      </section>
+
+      
+      <div class="footer navbar-fixed-bottom">
+        <div class="container">
+            <p class=" pull-left">
+            <a class="btn btn-danger btn-xs" role="button" id='resetProgress'>Start over</a>            
+            </p>            
+            <p class=" pull-right">
+            <a class="btn btn-default btn-xs" role="button" id='checkData'>Check data</a>
+            <a class="btn btn-success btn-xs" role="button" id='saveProgress'>Save progress &raquo;</a>            
+            </p>            
+        </div>
+      </div> 
+    
+<!-- Modal -->
+<div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog  modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Summary of request</h4>
+      </div>
+      <div class="modal-body">
+        <p> some text </p>
+
+        <div>
+            <ul id="modalTab" class="nav nav-tabs" role="tablist">
+              <li class="active"><a href="#human" role="tab" data-toggle="tab">Human</a></li>
+              <li><a href="#machine" role="tab" data-toggle="tab">Machine</a></li>
+            </ul>
+            <div id="modalTabContent" class="tab-content">
+              <div class="tab-pane fade in active" id="human">
+                <h3>Sample definitions</strong></h3>
+                <div id='modalInclusion'></div>
+                <h3>Comparison groups</strong></h3>
+                <div id='modalCols'></div>
+                <h3>Rows</strong></h3>
+                <div id='modalRows'></div>
+              </div>
+              <div class="tab-pane fade" id="machine">
+                <h3>Machine friendly content (JSON).</h3>
+                <p>JSON can be read with <code>R/jsonlite</code> or <code>SAS 9.4</code></p>
+                <pre id='machineFormContent'></pre>
+              </div>
+            </div>
+        </div>        
+      </div>
+      <div class="modal-footer">
+         <a type="button" href="" class="" id="shareLink"><span class="glyphicon glyphicon-link"></span> share the form with this link</a>        
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <a type="button" href="#" download="form.txt" class="btn btn-primary" id="downloadForm">Download <span class="glyphicon glyphicon-download"></span></a>        
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+       
+    </div> <!-- /container -->        
+
+  
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.2.0/js/bootstrap.min.js"></script>        
+        <!--script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0/handlebars.min.js"></script>        
+        <script src="//cdnjs.cloudflare.com/ajax/libs/ember.js/1.7.0/ember.min.js"></script-->
+        <script src="js/vendor/select2.min.js"></script>
+        <script src="js/vendor/jquery.cookie.js"></script>
+        <script src="js/vendor/notify.min.js"></script>
+        <script src="js/main.js"></script>
+        <script>
+        /* indexOF */
+        if (!Array.prototype.indexOf) {
+            Array.prototype.indexOf = function(obj, start) {
+             for (var i = (start || 0), j = this.length; i < j; i++) {
+                 if (this[i] === obj) { return i; }
+             }
+             return -1;
+            }
+        }       
+
+        /* get url parameters */
+        function getQueryVariable(variable)
+        {
+               var query = window.location.search.substring(1);
+               var vars = query.split("&");
+               for (var i=0;i<vars.length;i++) {
+                       var pair = vars[i].split("=");
+                       if(pair[0] == variable){return pair[1];}
+               }
+               return(false);
+        }  
+   
+        /* global variables */
+        var _global = (function(){
+            var iI = [0];
+            var iG = 0;
+            var iV = [0];
+            var data ={};
+            return({
+                iI : function(i){return(iI[i]);},
+                iG : function(){return(iG);},
+                iV : function(i){return(iV[i]);},
+                iIadd : function(i,a){if(iI[i]){
+                        iI[i] = iI[i]+a;
+                        }else{
+                        iI[i]=1;
+                        }
+                        },
+                iGadd : function(a){iG = iG+a;},
+                data : function(){return(data)},
+                setData: function(d){data=d},
+                initCounter: function(){iI=[0];iG=-1;}
+            });
+        })();
+                
+        /* return a form-group div compatible with bootstrap 
+           input: a number indicating the order of this variable
+        */
+        
+        function getPanel(i, panel){
+            if(panel){}else{panel='default';};
+            return(
+'<div class="col-md-4">'+
+'<div class="panel panel-'+panel+' " data-criterion-no="'+i.toString()+'">'+
+'<div class="panel-heading"> Criterion '+i.toString()+'</div>'+
+'<div class="panel-body">'+
+'<div class="inclusionVar'+i.toString()+' mainSelection select2-container"></div>'+
+'<h5>Values for discrete variables:</h5>'+
+'<div class="inclusionVarVal'+i.toString()+' subSelection select2-container">N/A</div>'+
+'<h5>Ranges for continuous variables:<h5>'+
+'<form class="form" role="form">'+
+'<div class="form-group ">'+
+'<label>Minimum value: </label>'+
+'<input type="number" class="form-control input-sm inclusionVarValMin inclusionVarValMin'+i.toString()+'" placeholder="min" disabled>'+
+'</div>'+
+'<div class="form-group ">'+
+'<label>Maximum value: </label>'+
+'<input type="number" class="form-control input-sm inclusionVarValMax inclusionVarValMax'+i.toString()+'" placeholder="max" disabled>'+
+'</div>'+
+'</form> '+
+'</div>'+
+'<div class="panel-footer"><a class="btn btn-default btn-sm clear-panel" href="#">clear</a> '+
+'<a class="btn btn-danger btn-sm remove-panel" href="#">remove</a></div>'+
+'</div>'+
+'</div>'
+                    );                
+        };
+        
+        function getGroup(g){        
+        return(
+            '<h3> Sample '+(g+1).toString()+' </h3><div id="inclusionGP'+g.toString()+'"  class="inclusionGroups" data-group-no="'+g.toString()+'">'+
+                "<p> Within group, conditions are joined by 'AND'.  For example, <i>status</i> is elective AND <i>dialysis</i> is yes. </p>"+
+                '<div class="row inclusionVars">  '+                 
+                    '<div class="col-md-4 addWithinGroupContainer">'+
+                        '<h4> </h4>'+
+                        '<a href="#" class="btn btn-default btn-block addWithinGroup" data-group-no="'+g.toString()+'"><span class="glyphicon glyphicon-plus"></span> Add criterion</a>'+    
+                    '</div>'+
+                '</div>'+
+            '</div>'+  
+            '<hr/>'     
+            );
+        }
+        
+        /* give a single key and return value value from a dictionary*/
+        function keyGetVal(k,dict){
+            var index = $.map(dict, function(e){return(e.key)}).indexOf(k);
+            return (dict[index].value);
+        }
+        
+        
+        function fuzzyMatch(search, text) {
+                                search = search.toUpperCase();
+                                text = text.toUpperCase();
+
+                                var j = -1; // remembers position of last found character
+
+                                // consider each search character one at a time
+                                for (var i = 0; i < search.length; i++) {
+                                    var l = search[i];
+                                    if (l == ' ') continue;     // ignore spaces
+
+                                    j = text.indexOf(l, j+1);     // search for character & update position
+                                    if (j == -1) return false;  // if it's not found, exclude this item
+                                }
+                                return true;
+                            };
+
+        $( document ).ready(function() {  
+            /* initialize standard population select*/
+            var standardPopulation = [{id:'1',text:'Isolated CABG'},{id:2, text:"Isolated AVR"},{id:4, text:'AVR+CABG'}]
+            $("#standardPop").select2({
+                    data: standardPopulation,                    
+                    allowClear: true,
+                    placeholder: "Choose a standard population"   ,
+                    multiple:true
+                });
+                
+            /* clean panel buttons */
+            $(document).on('click', '.clear-panel', function(e){
+                e.preventDefault();
+                //$($(this).parents('.panel').find('.mainSelection')[1]).val('').trigger('change');
+                $($(this).parents('.panel').find('.mainSelection').select2('val','')).trigger('change');
+            });
+                
+            /* remove panel buttons */
+            $(document).on('click', '.remove-panel', function(e){
+                e.preventDefault();
+                if (confirm('Are you sure you want to remove this criterion?')) {                    
+                    syncFormWithData();                    
+                    var i = $(this).parents('.panel').attr('data-criterion-no')-1;
+                    var g = parseInt($(this).parents('.inclusionGroups').attr('data-group-no'));
+                    var newD = _global.data();  // only a reference to the original data
+                    newD.inclusions[g].splice(i,1);
+                    _global.setData(newD);
+                    $("#allInclusionGroups").html('');
+                    _global.initCounter();
+                    loadData(newD);
+                    console.log([g,i]);
+                } else {                    
+                }
+            });
+            
+            /* add "add group button" function */
+            $('#addInclusionGroup').on('click', function(e){
+                    e.preventDefault();
+                    _global.iGadd(1);
+                    var g=_global.iG();
+                    var html=getGroup(g);
+                    $("#allInclusionGroups").append(html);
+                }
+                );
+
+            /* add "submit button" function */
+            $('#submitBtn').on('click', function(e){
+                    e.preventDefault();
+                    syncFormWithData();
+                    saveDataToCookie();  
+                    $('#checkData').click(); // refactor later    
+                    var d=_global.data();
+                    $('#machineFormContent').html(JSON.stringify(d, null, '\t'));
+                    /* get human readable summary date */
+                    var modalInc = "",
+                    modalRows = "",
+                    modalCols = "";
+                    var dict = $.map(allvars, function(e){return({key:e.ShortName, value:e.LongName})});
+                    if(d.inclusions && d.inclusions.length>0){
+                        for (g=0; g<d.inclusions.length; g++){
+                            gdata = d.inclusions[g];
+                            if (gdata && gdata.length>0){
+                                modalInc += "<p>Sample "+(g+1).toString()+": </p>";
+                                modalInc += "<ol>";
+                                for(i=0;i<gdata.length;i++){                                                                        
+                                    modalInc += "<li><code>"+keyGetVal(gdata[i].Var,dict)+"</code>";
+                                    if(gdata[i].ContVal && gdata[i].ContVal.length>0 && (gdata[i].ContVal[0] !=='' || gdata[i].ContVal[1] !=='')){
+                                        modalInc += " in the range between "+gdata[i].ContVal[0]+" and "+gdata[i].ContVal[1] ;
+                                    }else if(gdata[i].CatVal && gdata[i].CatVal.length>0){
+                                        modalInc += " with these choices:"+gdata[i].CatVal;
+                                    }
+                                    modalInc += "</li>";                                    
+                                }
+                                modalInc += "</ol>";
+                            }
+                        }
+                    }
+                    if(d.rows && d.rows.length >0){
+                        modalRows +="<p> You specified that we use ";
+                        for (i=0; i<d.rows.length; i++){
+                            modalRows += "<code>"+keyGetVal(d.rows[i],dict)+"</code>"
+                            if(i<d.rows.length-1){modalRows += ', ';}
+                        }
+                        modalRows += '.</p>';
+                    }
+                    if(d.cols && d.cols.length >0){
+                        modalCols +="<p> You specified that we use ";
+                        for (i=0; i<d.cols.length; i++){                            
+                            modalCols += "<code>"+keyGetVal(d.cols[i],dict)+"</code>"
+                            if(i<d.cols.length-1){modalCols += ', ';}
+                        }
+                        modalCols += '.</p>';
+                    }                    
+                                        
+                    if(d.inclusionComments){
+                        modalInclusion += '<p>Intruction: ';
+                        modalInclusion += d.inclusionComments;
+                        modalInclusion += '</p>';
+                    }
+                    if(d.rowComments){
+                        modalRows += '<p>Intruction: ';
+                        modalRows += d.rowComments;
+                        modalRows += '</p>';
+                    }
+                    if(d.colComments){
+                        modalCols += '<p>Intruction: ';
+                        modalCols += d.colComments;
+                        modalCols += '</p>';
+                    }
+                    
+                    $("#modalInclusion").html(modalInc);
+                    $("#modalRows").html(modalRows);
+                    $("#modalCols").html(modalCols);
+                    
+
+                    /* share form link */
+                    $('#shareLink').attr('href',(location.protocol+'//'+location.host+location.pathname+'?formdata='+encodeURIComponent(JSON.stringify(_global.data())))); 
+                    $('#submitModal').modal();                    
+                }
+                );
+
+            /* add "download button" function */  
+            $('#downloadForm').on('click', function(){               
+                var now = new Date().toString();
+                this.href = "data:text/plain;charset=UTF-8," + encodeURIComponent(now+$("#human").text()+JSON.stringify(_global.data()));
+            });                
+            
+            
+            
+            
+            /* check data */
+            $('#checkData').on('click', function(){
+            /* todo: check data completeness */
+                syncFormWithData();
+                $.notify(JSON.stringify(_global.data(), null, '  '));
+            });
+
+            /* save progress */
+            $('#saveProgress').on('click', function(){
+                syncFormWithData();
+                saveDataToCookie();
+            });
+
+            /* reset progress */
+            $('#resetProgress').on('click', function(){
+                if(confirm('Are you sure you ant to reset the entire page?')){
+                    $.removeCookie('data');
+                    location.reload();
+                } else{}            
+            });
+                            
+                
+            /* add "add criterion button" function */
+            $(document).on('click', '.addWithinGroup', function(e){
+                e.preventDefault();                
+                var g = $(this).attr('data-group-no');
+                _global.iIadd(g,1);
+                var i=_global.iI(g);                
+                var panelTypes = ['default','danger','warning','success','info','primary'];
+                var html = getPanel(i, panelTypes[g % 6]);
+                var container =$($(this).parents('.inclusionVars')[0]);
+                container.find('.addWithinGroupContainer').before(html);     
+                /* add selection stuff */
+                container.find(".inclusionVar"+i).select2({
+                    data: $.map(allvars, function(e){return({id:e.ShortName, text:e.LongName})}),                    
+                    matcher: fuzzyMatch,
+                    allowClear: true,
+                    placeholder: "Choose a variable"
+                    /* on change, modify other fields */
+                }).on('change', function(e, feededValue){
+                    /* clean set values for categories and numeric ranbes */
+                    container.find(".inclusionVarValMin"+i).val('');
+                    container.find(".inclusionVarValMax"+i).val('');
+                    container.find(".inclusionVarVal"+i).val('');
+                    //console.log(e);
+                    var val = feededValue ? feededValue:e.val
+                    var k = $.map(allvars, function(e){return(e.ShortName)}).indexOf(val);
+                    console.log(allvars[k]);
+                    if(k && allvars[k]){
+                        if(allvars[k].Choices){
+                            $("#inclusionGP"+g+" .inclusionVarVal"+i).select2({
+                                data: $.map(allvars[k].Choices, function(e){return({text:e.Description, id:e.HarvestCode})}),
+                                multiple:true,
+                                placeholder: "Choose one or multiple"
+                            });
+                            /* disable input for numeric ranges*/
+                            container.find(".inclusionVarValMin"+i).prop("disabled",true);
+                            container.find(".inclusionVarValMax"+i).prop("disabled",true);
+                        } else {
+                            /* enable numeric ranges */
+                            container.find(".inclusionVarValMin"+i).prop("disabled",false);
+                            container.find(".inclusionVarValMax"+i).prop("disabled",false);
+                            /* disable selection ranges*/
+                            container.find(".inclusionVarVal1"+i).select2("destroy");                          
+                        }
+                    } else{
+                    /* disable both categories and numeric values */                    
+                            container.find(".inclusionVarValMin"+i).prop("disabled",true);
+                            container.find(".inclusionVarValMax"+i).prop("disabled",true);                            
+                            container.find(".inclusionVarVal"+i).select2("destroy");   
+                    }
+                }); 
+              }
+            );
+        
+            /*  Load JSON and processing data */
+            var allvars={};
+            $.getJSON( "data/tablemaker.json", function() {
+              console.log( "success" );
+            })
+              .done(function(data) {
+                console.log( "second success" );                  
+                allvars = data;                
+                $.each(allvars, function(i,v){
+                    if(v.HarvestCodes){
+                        allvars[i].Choices = JSON.parse(v.HarvestCodes);                        
+                    }                    
+                });
+                /* initialize rowVars selector */
+                $("#rowVars").select2({
+                    data: $.map(allvars, function(e){return({id:e.ShortName, text:e.LongName, definition:e.Definition})}),
+                    matcher: fuzzyMatch,
+                    allowClear: true,
+                    placeholder: "Choose variables",
+                    multiple:true,
+                    formatResult:varFormatResult,
+                    dropdownCssClass: "bigdrop"                    
+                });
+
+                /* initialize colVars selector */
+                $("#colVars").select2({
+                    data: $.map(allvars, function(e){return({id:e.ShortName, text:e.LongName, definition:e.Definition})}),
+                    matcher: fuzzyMatch,
+                    allowClear: true,
+                    placeholder: "Choose variables",
+                    multiple:true,
+                    formatResult:varFormatResult,
+                    dropdownCssClass: "bigdrop"                    
+                });
+                
+                /* check if formdata query string is available */
+                if(getQueryVariable('formdata')){
+                    var sharedOBJ=JSON.parse(decodeURIComponent(getQueryVariable('formdata')));
+                    if(sharedOBJ){
+                        _global.setData(sharedOBJ);
+                        saveDataToCookie();
+                        window.location=location.protocol+'//'+location.host+location.pathname;
+                    }
+                }else {
+                    /* load data from cookie if available */                
+                    loadDataFromCookie();
+                }
+
+              })
+              .fail(function() {
+                alert('Server error: please retry in a moment');
+              })
+              .always(function() {
+                console.log( "complete" );
+              });      
+              
+        });//document.ready
+        
+        /* format select2 choices so that definitions are included */
+        function varFormatResult(e) {
+            var markup = "<span><strong>"+e.text+"</strong></span>";
+            markup += '<p>'+e.definition+'</p>';
+            return markup;
+        }        
+        
+        /* grab all results and string-ify, save to cookie */
+        function syncFormWithData(){
+            var inclusions=[], columns, rows;
+            var inclusionGP = $(".inclusionGroups");
+            $.each(inclusionGP, function(i,e){
+                var panels = $(e).find(".panel");
+                var criteria =[];
+                $.each(panels, function(ip, ep){
+                    var main= $(ep).find('.mainSelection');
+                    if (main.select2('val') !== ''){
+                        /* get sub selections */
+                        var criterion = {
+                            Var: main.select2('val'),
+                            CatVal: ($(ep).find('.subSelection').select2('val') instanceof Array)?$(ep).find('.subSelection').select2('val') : [],
+                            ContVal: [$(ep).find('.inclusionVarValMin').val(), $(ep).find('.inclusionVarValMax').val()]
+                        } 
+                        criteria.push(criterion);
+                    }                    
+                });
+                if (criteria && criteria.length > 0 ){
+                    inclusions.push(criteria);
+                }                
+            });
+            console.log(inclusions);
+                        
+            _global.setData({
+                inclusions:inclusions,
+                inclusionComments: $('#inclusionFreeText').val(),
+                rows:$("#rowVars").select2('val'),
+                rowComments: $('#rowFreeText').val(),
+                cols:$("#colVars").select2('val'),
+                colComments: $('#colFreeText').val(),
+                date: [$("#dateFrom").val(),$("#dateUntil").val()]
+            });
+        }
+        
+        function saveDataToCookie(){
+            //syncFormWithData();
+            $.cookie('data', JSON.stringify(_global.data()));  
+            $.notify('Saved.', 'success', {position:'bottom right'});
+        }
+
+        /* load data  - this repopulates everything using d, useful for deletions of group/criterion*/
+        function loadData(d){            
+            console.log(d);
+            _global.setData(d);
+            $('#inclusionFreeText').val(d.inclusionComments);
+            $("#rowVars").select2('val',d.rows);
+            $('#rowFreeText').val(d.rowComments);
+            $("#colVars").select2('val',d.cols);
+            $('#colFreeText').val(d.colComments);
+            $("#dateFrom").val(d.date[0]);
+            $("#dateUntil").val(d.date[1]);   
+
+            /* load inclusion groups */
+            if(d.inclusions && d.inclusions.length >0){
+                for (i=0; i<d.inclusions.length;i++){
+                    if( d.inclusions[i].length>0 && $("#inclusionGP"+i.toString()).length === 0){
+                        $("#addInclusionGroup").click();
+                    }
+                    /* load inclusion criteria */
+                    for (j=0; j<d.inclusions[i].length; j++){
+                        if( $("#inclusionGP"+i.toString()+ " .inclusionVar"+(j+1).toString()).length === 0){
+                            $("#inclusionGP"+i.toString()+" .addWithinGroup").click();                        
+                        }
+                        /* fill in details */
+                        var item=d.inclusions[i][j];
+                        $($("#inclusionGP"+i.toString()+ " .inclusionVar"+(j+1)).select2('val', item.Var)).trigger('change', item.Var);
+                        if(item.CatVal){
+                            $("#inclusionGP"+i.toString()+ " .inclusionVarVal"+(j+1)).select2('val', item.CatVal);
+                        }
+                        if(item.ContVal){
+                            $("#inclusionGP"+i.toString()+ " .inclusionVarValMin"+(j+1)).val(item.ContVal[0]);
+                            $("#inclusionGP"+i.toString()+ " .inclusionVarValMax"+(j+1)).val(item.ContVal[1]);
+                        }
+                    }            
+                }                         
+             }
+        }
+        
+        function loadDataFromCookie(){
+            var raw=$.cookie('data');
+            if(typeof raw =='undefined'){
+                /* if no cookie is present, add one criterion as an example */
+                $('.addWithinGroup').click();
+                return;
+            }
+            var d=JSON.parse(raw);            
+            loadData(d);
+        }
+                </script>
+    </body>
+</html>
